@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+
+<title>Birthday Welcome</title>
+
+<style>
+
+body{
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    background:linear-gradient(135deg,#ffb6d9,#ff8fc4,#ffcce5);
+    font-family:Arial;
+}
+
+/* Teddy Walking Animation */
+
+.teddy-container{
+    position:relative;
+    animation:walk 4s ease-in-out forwards;
+}
+
+@keyframes walk{
+
+    0%{
+        transform:translateX(-700px);
+    }
+
+    100%{
+        transform:translateX(0px);
+    }
+}
+
+/* Teddy */
+
+.teddy{
+    position:relative;
+    width:250px;
+    height:350px;
+}
+
+/* Head */
+
+.head{
+    width:150px;
+    height:150px;
+    background:pink;
+    border-radius:50%;
+    position:absolute;
+    top:0;
+    left:50px;
+    box-shadow:0 0 20px rgba(255,255,255,0.8);
+}
+
+/* Ears */
+
+.ear1,.ear2{
+    width:55px;
+    height:55px;
+    background:pink;
+    border-radius:50%;
+    position:absolute;
+}
+
+.ear1{
+    top:-10px;
+    left:20px;
+}
+
+.ear2{
+    top:-10px;
+    right:20px;
+}
+
+/* Eyes */
+
+.eye1,.eye2{
+    width:14px;
+    height:14px;
+    background:black;
+    border-radius:50%;
+    position:absolute;
+    top:55px;
+}
+
+.eye1{
+    left:42px;
+}
+
+.eye2{
+    right:42px;
+}
+
+/* Smile */
+
+.smile{
+    width:40px;
+    height:20px;
+    border-bottom:4px solid #ff1493;
+    border-radius:0 0 40px 40px;
+    position:absolute;
+    top:90px;
+    left:55px;
+}
+
+/* Nose */
+
+.nose{
+    width:18px;
+    height:14px;
+    background:#ff1493;
+    border-radius:50%;
+    position:absolute;
+    top:72px;
+    left:66px;
+}
+
+/* Body */
+
+.body{
+    width:170px;
+    height:180px;
+    background:pink;
+    border-radius:45%;
+    position:absolute;
+    top:130px;
+    left:40px;
+}
+
+/* Hands */
+
+.hand1,.hand2{
+    width:40px;
+    height:110px;
+    background:pink;
+    border-radius:30px;
+    position:absolute;
+    top:145px;
+    transform-origin:top center;
+    animation:openHands 2s infinite alternate;
+}
+
+.hand1{
+    left:5px;
+}
+
+.hand2{
+    right:5px;
+}
+
+@keyframes openHands{
+
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(45deg);
+    }
+}
+
+/* Legs */
+
+.leg1,.leg2{
+    width:45px;
+    height:90px;
+    background:pink;
+    border-radius:30px;
+    position:absolute;
+    bottom:-10px;
+}
+
+.leg1{
+    left:55px;
+}
+
+.leg2{
+    right:55px;
+}
+
+/* Message */
+
+.message{
+    margin-top:40px;
+    text-align:center;
+    animation:fade 5s;
+}
+
+.message h1{
+    color:white;
+    font-size:50px;
+    text-shadow:0 0 15px #ff1493;
+}
+
+.message h2{
+    color:white;
+    font-size:28px;
+}
+
+/* Fade Animation */
+
+@keyframes fade{
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+}
+
+/* Click Me */
+
+.click-text{
+    color:white;
+    font-size:26px;
+    font-weight:bold;
+    margin-top:15px;
+    animation:blink 1s infinite;
+}
+
+@keyframes blink{
+
+    50%{
+        opacity:0.4;
+    }
+}
+
+/* Button */
+
+button{
+    margin-top:20px;
+    padding:15px 35px;
+    border:none;
+    border-radius:40px;
+    background:white;
+    color:#ff1493;
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.4s;
+    box-shadow:0 0 15px rgba(255,255,255,0.7);
+}
+
+button:hover{
+    transform:scale(1.1);
+    background:#ffe4f2;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- Teddy -->
+
+<div class="teddy-container">
+
+<div class="teddy">
+
+    <div class="head">
+
+        <div class="ear1"></div>
+        <div class="ear2"></div>
+
+        <div class="eye1"></div>
+        <div class="eye2"></div>
+
+        <div class="nose"></div>
+
+        <div class="smile"></div>
+
+    </div>
+
+    <div class="body"></div>
+
+    <div class="hand1"></div>
+    <div class="hand2"></div>
+
+    <div class="leg1"></div>
+    <div class="leg2"></div>
+
+</div>
+
+</div>
+
+<!-- Message -->
+
+<div class="message">
+
+    <h1>HAPPY BIRTHDAY CHINNULU.............</h1>
+
+    <h2>
+        A Surprise Letter Is Waiting For You
+    </h2>
+
+</div>
+
+ 
+
+<a href="letter.html">
+
+    <button>
+       Click ME TO Open Surprise
+    </button>
+
+</a>
+
+<!-- Music -->
+
+<audio autoplay loop>
+
+    <source src="music/birthday.mpeg" type="audio/mpeg">
+
+</audio>
+
+</body>
+</html>

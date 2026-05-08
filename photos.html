@@ -1,0 +1,384 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+
+<title>Birthday Surprise</title>
+
+<style>
+
+body{
+    margin:0;
+    padding:0;
+    font-family: "Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji", Arial, sans-serif;
+    text-align:center;
+    overflow-y:auto;
+    min-height:100vh;
+    background:linear-gradient(135deg,#ff8fb1,#ffc0cb,#ffd6e7);
+    position:relative;
+}
+
+/* Heading */
+h1{
+    margin-top:20px;
+    color:white;
+    font-size:55px;
+    text-shadow:0 0 15px white;
+}
+
+/* MAIN */
+.main-row{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:60px;
+    flex-wrap:wrap;
+    margin-top:30px;
+}
+
+/* PHOTO FRAME */
+.photo-frame{
+    width:400px;
+    height:600px;
+    padding:15px;
+    border-radius:40px;
+    background:white;
+    box-shadow:0 0 40px rgba(255,105,180,0.7);
+    overflow:hidden;
+    position:relative;
+    z-index:2;
+}
+
+#slider{
+    width:100%;
+    height:100%;
+    border-radius:30px;
+    object-fit:cover;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* TIMER */
+.timer-section{
+    color:white;
+    position:relative;
+    z-index:2;
+}
+
+input{
+    width:120px;
+    padding:10px;
+    border-radius:20px;
+    border:none;
+    text-align:center;
+    font-size:18px;
+}
+
+button{
+    padding:12px 25px;
+    margin-top:15px;
+    border:none;
+    border-radius:30px;
+    background:white;
+    color:#ff1493;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.1);
+}
+
+/* TIMER DISPLAY */
+.timer-box{
+    font-size:45px;
+    margin-top:15px;
+    text-shadow:0 0 10px white;
+}
+
+/* COUNTDOWN */
+#countdownOverlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    font-size:120px;
+    font-weight:bold;
+    color:white;
+    background:rgba(0,0,0,0.4);
+    z-index:10000;
+    text-shadow:0 0 25px #ff1493;
+}
+
+/* BLAST */
+#blastMessage{
+    display:none;
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:85%;
+    height:85%;
+    background:rgba(255,255,255,0.3);
+    backdrop-filter:blur(10px);
+    border-radius:30px;
+    padding:20px;
+    z-index:9999;
+}
+
+/* GLOW BUTTON */
+.glow-btn{
+    padding:12px 28px;
+    border:none;
+    border-radius:40px;
+    background:white;
+    color:#ff1493;
+    font-weight:bold;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+    margin-top:15px;
+}
+
+.glow-btn::before{
+    content:"";
+    position:absolute;
+    top:-50%;
+    left:-50%;
+    width:200%;
+    height:200%;
+    background:linear-gradient(45deg,#ff1493,#ff69b4,#fff,#ff1493);
+    animation:rotateGlow 3s linear infinite;
+    z-index:-1;
+}
+
+.glow-btn::after{
+    content:"";
+    position:absolute;
+    inset:3px;
+    background:white;
+    border-radius:40px;
+    z-index:-1;
+}
+
+@keyframes rotateGlow{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
+}
+
+/* ========================= */
+/* 🤍 WHITE HEART BACKGROUND */
+/* ========================= */
+
+.heart-bg{
+    position:fixed;
+    bottom:-20px;
+    color:white;          /* ✅ WHITE HEARTS */
+    font-size:18px;
+    opacity:0.9;
+    animation:floatUp linear infinite;
+    z-index:0;
+    pointer-events:none;
+    text-shadow:0 0 5px rgba(255,255,255,0.8);
+}
+
+@keyframes floatUp{
+    0%{
+        transform:translateY(0);
+        opacity:0;
+    }
+    10%{
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-110vh);
+        opacity:0;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- WHITE HEART BACKGROUND CONTAINER -->
+<div id="heartContainer"></div>
+
+<h1> Memories with you </h1>
+
+<div class="main-row">
+
+    <!-- PHOTO -->
+    <div class="photo-frame">
+        <img id="slider" src="images/photo1.jpeg">
+    </div>
+
+    <!-- TIMER -->
+    <div class="timer-section">
+
+        <h2>Enter Time and click start to blast </h2>
+
+        <input type="number" id="timeValue" value="5">
+
+        <br>
+
+        <button onclick="startTimer()">START</button>
+
+        <div class="timer-box" id="timer">5</div>
+         <a href="index.html" style="text-decoration:none;">
+            <button class="glow-btn">Home</button>
+        </a>
+
+        <a href="surprise.html" style="text-decoration:none;">
+            <button class="glow-btn"> Surprise</button>
+        </a>
+
+    </div>
+
+</div>
+
+<!-- COUNTDOWN -->
+<div id="countdownOverlay"></div>
+
+<!-- BLAST -->
+<div id="blastMessage">
+
+    <div style="text-align:center;">
+
+        <h1 style="color:#ff1493;"> HAPPY BIRTHDAY CHINNULU..... </h1>
+
+        <p style="font-size:25px;">
+            Wishing you a very happy birthday chinnu<br>
+            Click Surprise for final moment 
+        </p>
+
+        <a href="surprise.html">
+            <button>Go to Surprise</button>
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+
+/* AUTO IMAGE SLIDER */
+var photos = [
+"images/photo1.jpeg",
+"images/photo2.jpeg",
+"images/photo3.jpeg",
+"images/photo4.jpeg",
+"images/photo5.jpeg",
+"images/photo6.jpeg",
+"images/photo7.jpeg",
+"images/photo8.jpeg",
+"images/photo9.jpeg",
+"images/photo10.jpeg",
+"images/photo11.jpeg",
+"images/photo12.jpeg"
+];
+
+var i = 0;
+
+setInterval(function(){
+
+let img = document.getElementById("slider");
+
+img.style.opacity = 0;
+
+setTimeout(()=>{
+
+    img.src = photos[i];
+    img.style.opacity = 1;
+
+},300);
+
+i++;
+
+if(i >= photos.length){
+    i = 0;
+}
+
+}, 2500);
+
+/* TIMER */
+function startTimer(){
+
+let timeLeft = parseInt(document.getElementById("timeValue").value);
+
+if(isNaN(timeLeft) || timeLeft <= 0){
+alert("Enter valid time!");
+return;
+}
+
+let timer = document.getElementById("timer");
+let overlay = document.getElementById("countdownOverlay");
+
+timer.innerHTML = timeLeft;
+
+let countdown = setInterval(()=>{
+
+timeLeft--;
+timer.innerHTML = timeLeft;
+
+if(timeLeft <= 3 && timeLeft > 0){
+overlay.style.display = "flex";
+overlay.innerHTML = timeLeft;
+}
+
+if(timeLeft <= 0){
+clearInterval(countdown);
+
+overlay.innerHTML = "BLAST";
+
+setTimeout(()=>{
+overlay.style.display = "none";
+document.getElementById("blastMessage").style.display = "block";
+},1000);
+
+}
+
+},1000);
+
+}
+
+/* ========================= */
+/* 🤍 WHITE HEART BACKGROUND */
+/* ========================= */
+
+function createWhiteHearts(){
+
+setInterval(()=>{
+
+let h = document.createElement("div");
+h.className = "heart-bg";
+h.innerHTML = "🤍";
+
+h.style.left = Math.random()*100 + "vw";
+h.style.animationDuration = (Math.random()*3 + 3) + "s";
+h.style.fontSize = (Math.random()*15 + 15) + "px";
+
+document.body.appendChild(h);
+
+setTimeout(()=>h.remove(),7000);
+
+},300);
+
+}
+
+/* START HEART BACKGROUND */
+window.onload = function(){
+    createWhiteHearts();
+};
+
+</script>
+
+</body>
+</html>

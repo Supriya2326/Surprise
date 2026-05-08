@@ -1,0 +1,177 @@
+
+<html>
+<head>
+
+<meta charset="UTF-8">
+<title>Surprise Letter</title>
+
+<style>
+
+/* PAGE */
+body{
+    margin:0;
+    padding:0;
+    font-family:"Segoe UI", Arial, sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    overflow:hidden;
+}
+
+/* BACKGROUND IMAGE WITH TRANSPARENCY */
+body::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:url("images/photo1.jpeg") no-repeat center center/cover;
+    opacity:0.25;   /* transparency */
+    z-index:-1;
+}
+
+/* DIARY LETTER */
+.letter{
+    width:80%;
+    max-width:750px;
+    height:80vh;
+    overflow-y:auto;
+
+    background:rgba(255,255,255,0.9);
+    background-image: repeating-linear-gradient(
+        white,
+        white 28px,
+        #cfe3ff 29px
+    );
+
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 0 25px rgba(0,0,0,0.2);
+}
+
+/* TITLE */
+.letter h1{
+    text-align:center;
+    color:#ff1493;
+    font-size:38px;
+    margin-bottom:20px;
+}
+
+/* TEXT */
+#typedText{
+    font-size:20px;
+    line-height:28px;
+    color:black;
+    white-space:pre-wrap;
+}
+
+/* IMAGE */
+.letter img{
+    display:block;
+    margin:20px auto;
+    width:200px;
+    border-radius:15px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+/* BUTTONS */
+.buttons{
+    text-align:center;
+    margin-top:20px;
+}
+
+button{
+    padding:10px 20px;
+    margin:10px;
+    border:none;
+    border-radius:25px;
+    background:#ff1493;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.1);
+    background:#ff69b4;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="letter">
+
+    <h1>💌 A Special Letter For You</h1>
+
+    <!-- TYPING TEXT -->
+    <div id="typedText"></div>
+
+    <div class="buttons">
+
+        <a href="photos.html">
+            <button>Previous</button>
+        </a>
+
+        <a href="index.html">
+            <button>Return Home</button>
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+
+/* SAFE EMOJI-FREE VERSION (works in all browsers) */
+let text = `
+	Dear chinnu,
+
+	Happy Birthday to you...
+
+	On this special day, I just want to pause and tell you how much you truly mean to me. It’s been 3 years of our friendship this 3 years filled with endless memories, laughter, surprises, and also a few storms that tested us in ways we never expected.
+
+	I still remember the little moments that made our bond stronger , those random late-night talks, sharing silly secrets, laughing at things that didn’t even make sense to anyone else, and standing by each other when no one else did. Those memories are not just moments; they are pieces of my heart that I will always keep safe.
+
+	Yes, we had misunderstandings… we fought, we got hurt, sometimes we even stopped talking for a while. There were moments when it felt like everything might break apart. But somehow, we always found our way back. Maybe that’s what real friendship is ,not being perfect, but choosing each other again and again, even after mistakes.
+
+	Every fight taught us something. Every silence made us realize the value of our bond. And every reunion proved that distance or anger can never erase what is truly real.
+
+	Today, I don’t just wish you a happy birthday ,I wish you happiness that stays forever, strength to face every challenge, and a heart full of peace and love. May this year bring you everything you’ve been dreaming of and more.
+
+	No matter where life takes us, a part of me will always be grateful for you and for these 3 years of friendship that shaped so many beautiful memories.
+
+	With love and warm wishes,
+	
+	And thank you for being my best friend
+
+Once again,
+
+Happy Birthday !
+`;
+
+/* typing effect */
+let i = 0;
+let speed = 25;
+
+function typeWriter(){
+    if(i < text.length){
+        document.getElementById("typedText").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+    }
+}
+
+window.onload = function(){
+    typeWriter();
+};
+
+</script>
+
+</body>
+</html>
